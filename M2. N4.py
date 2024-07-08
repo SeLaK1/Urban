@@ -4,11 +4,11 @@ not_primes = []
 
 for i in range(len(numbers)):
     flag = True
-    if abs(numbers[i]) > 2:
+    if abs(numbers[i]) > 1:
         if numbers[i] % 2 != 0:
-            for j in range(3, int(numbers[i]/2), ):
+            for j in range(3, numbers[i]//2):
                 if flag == True:
-                    if i % j == 0:
+                    if numbers[i] % j == 0:
                         flag = False
         else:
             flag = False
@@ -19,8 +19,6 @@ for i in range(len(numbers)):
 
 print(primes)
 print(not_primes)
-
-
 
 
 
