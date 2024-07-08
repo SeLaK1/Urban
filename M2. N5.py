@@ -1,9 +1,10 @@
 from random import *
 def get_matrix(n, m, value):
-    matrix = [['']*n]*m
+    matrix = []
     for i in range(n):
+        matrix.append([])
         for j in range(m):
-            matrix[i][j] = value
+            matrix[i].append(value)
     return matrix
 
 print(get_matrix(4,4, randint(1, 50)))
