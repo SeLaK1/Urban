@@ -20,9 +20,8 @@ def poisk_summ(spisok_kratnih):
     return rezult
 
 perem = int(input('Введите значение: '))
-print(poisk_kratnih(perem))
 print(poisk_summ(poisk_kratnih(perem)))
-input()
+input() # для того, чтобы вставить проверку ниже ctrl+c/ctrl+v
 
 
 
