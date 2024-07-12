@@ -1,4 +1,4 @@
-import random
+
 def count_calls():
     global colls
     colls += 1
