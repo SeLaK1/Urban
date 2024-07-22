@@ -2,7 +2,7 @@
 def podschet_summ(*perem):
     global summ
     for i in perem:
-        if isinstance(i, int) or isinstance(i, float):
+        if isinstance(i, int):
             summ += i
         elif isinstance(i, str):
             summ += len(i)
