@@ -20,6 +20,11 @@ class house:
             raise TypeError('При сравнении количесва этажей, все переменные должны быть домами (type house)')
         return self.count_of_floors == other_self.count_of_floors
 
+    def __ne__(self, other_self):
+        if not isinstance(other_self, house):
+            raise TypeError('При сравнении количесва этажей, все переменные должны быть домами (type house)')
+        return self.count_of_floors != other_self.count_of_floors
+
     def __lt__(self, other_self):
         if not isinstance(other_self, house):
             raise TypeError('При сравнении количесва этажей, все переменные должны быть домами (type house)')
