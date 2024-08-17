@@ -4,8 +4,10 @@ class Figure:
     filled = False
 
     def __init__(self, __color, *__sides):
-        self.__color, self.__sides = __color, __sides
-        self.proverka()
+        self.__color = list(__color)
+        if self.__is_valid_sides(*__sides):
+            self.__sides = __sides
+            self.first_proverka()
 
     def get_color(self):
         return self.__color
@@ -18,16 +20,13 @@ class Figure:
 
     def set_color(self, r, g, b):
         if self.__is_valid_color(r, g, b):
-            self.__color = (r, g, b)
+            self.__color = [r, g, b]
 
     def __is_valid_sides(self, *spisok_storon):
         check = True
-        if len(spisok_storon) == len(self.__sides):
-            for storona in spisok_storon:
-                if not isinstance(storona, int) or storona <= 0:
-                    check = False
-        else:
-            check = False
+        for storona in spisok_storon:
+            if not isinstance(storona, int) or storona <= 0:
+                check = False
         return check
 
     def get_sides(self):
@@ -35,36 +34,34 @@ class Figure:
 
     def __len__(self):
         Perimetr = 0
-        for storona in self.__sides:
-            Perimetr += storona
+        if not isinstance(self.__sides, int):
+            for storona in self.__sides:
+                Perimetr += storona
+        else:
+            Perimetr = self.__sides
         return Perimetr
 
     def set_sides(self, *new_sides):
-        if self.__is_valid_sides(*new_sides):
+        if self.__is_valid_sides(*new_sides) and (len(new_sides) == self.sides_count or len(new_sides) == 1):
             self.__sides = new_sides
-        else:
-            if len(new_sides) == 1:
-                self.__sides = new_sides[0]
-            else:
-                self.__sides = new_sides
             self.proverka()
-
-
     def proverka(self):
         list_= []
         if isinstance(self.__sides, tuple) and len(self.__sides) == 1:
             a = self.__sides[0]
             self.__sides = a
         if isinstance(self.__sides, int):
-            a = self.__sides
             for i in range(self.sides_count):
                 list_.append(self.__sides)
             self.__sides = list_
-        elif (isinstance(self.__sides, list) or isinstance(self.__sides, tuple)) and len(self.__sides) != self.sides_count:
+            return True
+        return False
+    def first_proverka(self):
+        list_ = []
+        if not self.proverka():
             for i in range(self.sides_count):
                 list_.append(1)
             self.__sides = list_
-
 class Circle(Figure):
     sides_count = 1
     def __radius(self):
@@ -72,6 +69,7 @@ class Circle(Figure):
 
     def get_square(self):
         return pi*(self.__radius()**2)
+
 class Triangle(Figure):
     sides_count = 3
     def get_square(self):
