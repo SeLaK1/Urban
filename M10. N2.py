@@ -3,10 +3,9 @@ from threading import Thread
 import time
 
 class Knight(Thread):
-    count_enemy = 100
-    def __init__(self, name, power):
+    def __init__(self, name, power, count_enemy=150):
         super().__init__()
-        self.name, self.power = name, power
+        self.name, self.power, self.count_enemy = name, power, count_enemy
 
     def run(self):
         count_day = 0
@@ -18,7 +17,7 @@ class Knight(Thread):
             print(f'{self.name} сражается уже {count_day} днень(дня), осталось {self.count_enemy} врагов')
         print(f'{self.name} одержал победу за {count_day+1} дней(дня)')
 
-first_knight = Knight('----Sir Lancelot', 10)  
+first_knight = Knight('----Sir Lancelot', 10)   
 second_knight = Knight('Sir Galahad', 20)
 knight = []
 
