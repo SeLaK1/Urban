@@ -31,9 +31,11 @@ class Cafe:
                             table.guest = guest.name
                             guest.start()
                             print(f'{guest.name} сел за стол под номером {table.number}')
+                            time.sleep(0.5)
                 else:
                     self.que.put(guest)
                     print(f'{guest.name} в ожидании')
+                    time.sleep(0.5)
         return guests
 
     def discuss_guests(self, *guests):
