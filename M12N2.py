@@ -3,7 +3,7 @@ import unitest2
 import unittest
 
 class TournmentTest(unittest.TestCase):
-
+    is_frozen = True
     @classmethod
     def setUpClass(self):
         self.all_results = {}
@@ -31,12 +31,18 @@ class TournmentTest(unittest.TestCase):
                        self.all_results[key2] = perem
         return self.all_results
 
-
-    def test_True(self):
+    @unittest.skipIf(is_frozen, 'В данном классе все тесты заморожены')
+    def test_True_First(self):
         self.assertEqual(self.TournamentTest(self.r1, self.r3)[self.all_results.__len__()].name, 'Ник')
         self.ttearDownClass()
+
+    @unittest.skipIf(is_frozen, 'В данном классе все тесты заморожены')
+    def test_True_Second(self):
         self.assertEqual(self.TournamentTest(self.r3, self.r2)[self.all_results.__len__()].name, 'Ник')
         self.ttearDownClass()
+
+    @unittest.skipIf(is_frozen, 'В данном классе все тесты заморожены')
+    def test_True_Third(self):
         self.assertEqual(self.TournamentTest(self.r1, self.r2, self.r3)[self.all_results.__len__()].name, 'Ник')
         self.ttearDownClass()
 
