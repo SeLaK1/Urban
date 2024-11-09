@@ -1,16 +1,19 @@
 from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from  aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
 
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage= MemoryStorage())
 
-klava = ReplyKeyboardMarkup()
-button_1 = KeyboardButton(text = 'Информация')
-button_2 = KeyboardButton(text = 'Рассчитать')
-klava.add(button_1)
-klava.add(button_2)
+klava = ReplyKeyboardMarkup(
+    keyboard = [
+        [KeyboardButton(text = 'Информация'),
+         KeyboardButton(text = 'Рассчитать')]
+    ], resize_keyboard = True
+)
+
 
 class User(StatesGroup):
     age = State()
