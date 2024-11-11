@@ -7,8 +7,6 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from crud_functions import *
 
-
-api = '7973596512:AAEQe3y7USAQ98mJt_r2nyPbYlS5aqAwATo'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage= MemoryStorage())
 
@@ -35,9 +33,6 @@ klava3 = InlineKeyboardMarkup(
     ]
 )
 
-products = get_all_products()
-
-
 class User(StatesGroup):
     age = State()
     growth = State()
@@ -49,6 +44,7 @@ async def nachalo(message):
 
 @dp.message_handler(text = 'Купить')
 async def get_buying_list(message):
+    products = get_all_products()
     number = 0
     for product in products:
         number+= 1
