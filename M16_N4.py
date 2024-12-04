@@ -18,7 +18,10 @@ async def get_all_user() -> List[User]:
 @app.post('/user/{username}/{age}')
 async def create_user(username: str, age: int, user: User = None) -> User:
     try:
-        user.id = len(users) + 1
+        if users != []:
+            user.id = users[-1].id + 1
+        else:
+            user.id = 1
         user.username = username
         user.age = age
         users.append(user)
